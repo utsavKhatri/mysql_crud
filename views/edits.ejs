@@ -1,42 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= title %></title>
-    <link rel="stylesheet" href="/public/style.css">
+    <link rel="stylesheet" href="/public/style.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
       crossorigin="anonymous"
     />
-</head>
-<body>
+  </head>
+  <body>
     <%- include('./partials/nav.ejs') %>
     <div class="container">
-        <h1>
-            welcome to <%= title  %>
-        </h1>
-        <p>Enter data want to store</p>
+      <h1>welcome to <%= title %></h1>
+      <p>enter data want to update</p>
 
-        <form action="/add" method="post">
-            <div class="form-group my-2">
-              <label for="exampleInputPassword1">Name</label>
-              <input type="text"  name="name" class="form-control" id="exampleInputPassword1" placeholder="Enter name">
-            </div>
-            <div class="form-group my-2">
-              <label for="exampleInputEmail1">Email address</label>
-              <input type="email"  name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
+      <form action="/edit/<%= data[0].id  %>" method="post">
+        <div class="form-group my-2">
+          <label for="exampleInputName1">Name</label>
+          <input
+            type="text"
+            name="name"
+            class="form-control"
+            id="exampleInputName1"
+            value="<%= data[0].name  %>"
+            placeholder="Enter new name"
+          />
+        </div>
+        <div class="form-group my-2">
+          <label for="exampleInputEmail">Email address</label>
+          <input
+            type="email"
+            name="email"
+            class="form-control"
+            id="exampleInputEmail"
+            value="<%= data[0].email  %>"
+            aria-describedby="emailHelp"
+            placeholder="Enter new email"
+          />
+        </div>
+        <div class="form-group my-2">
+          <label for="exampleInputDes2">Designation</label>
+          <input
+            type="text"
+            name="designation"
+            class="form-control"
+            id="exampleInputDes2"
+            value="<%= data[0].designation  %>"
+            aria-describedby="emailHelp"
+            placeholder="Enter designation"
+          />
+        </div>
+        <div class="form-group my-2">
+          <label for="exampleInputNum2">Mo. number</label>
+          <input
+            type="number"
+            name="number"
+            class="form-control"
+            id="exampleInputNum2"
+            value="<%= data[0].number  %>"
+            aria-describedby="emailHelp"
+            placeholder="Enter Mo. number"
+          />
+        </div>
+        <button type="submit" class="btn btn-success">Update</button>
+      </form>
     </div>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
       crossorigin="anonymous"
     ></script>
-</body>
+  </body>
 </html>

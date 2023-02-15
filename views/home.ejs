@@ -20,8 +20,6 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-
-   
   </head>
   <body>
     <%- include('./partials/nav.ejs') %>
@@ -34,22 +32,37 @@
             <th scope="col">ID</th>
             <th scope="col">Name</th>
             <th scope="col">Email</th>
+            <th scope="col">Designation</th>
+            <th scope="col">Mobile no.</th>
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
           </tr>
         </thead>
         <tbody>
-          <% data.map(v=>{ %>
+          <% if(data.length<1){ %>
           <tr>
-            <td><%= v.id %></td>
+            <td colspan="5" class="text-center">No data available in database</td> 
+          </tr>
+          <% } else{ data.map((v, i)=>{ %>
+          <tr>
+            <td><%= i+1 %></td>
             <td><%= v.name %></td>
             <td><%= v.email %></td>
+            <td><%= v.designation %></td>
+            <td><%= v.number %></td>
             <td>
-              <i class="fa fa-duotone fa-pen-to-square"></i>
+              <a class="edit-btn" href="/edit/<%= v.id  %>"
+                ><i class="fa fa-duotone fa-pen-to-square"></i
+              ></a>
             </td>
-            <td><i class="fa fa-duotone fa-trash"></i></td>
+            <td>
+              <i
+                id="<%= v.id  %>"
+                class="delete-btn fa fa-duotone fa-trash"
+              ></i>
+            </td>
           </tr>
-          <% }) %>
+          <% }) }%>
         </tbody>
       </table>
     </div>
@@ -58,5 +71,23 @@
       integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
       crossorigin="anonymous"
     ></script>
+
+    <script>
+      const delUser = document.querySelectorAll(".delete-btn");
+      delUser.forEach((item) => {
+        item.addEventListener("click", (e) => {
+          const endpoint = `/deleteUser/${item.id}`;
+          console.log(endpoint);
+          fetch(endpoint, { method: "DELETE" })
+            .then((response) => response.json())
+            .then((data) => {
+              window.location.href = data.redirect;
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        });
+      });
+    </script>
   </body>
 </html>
