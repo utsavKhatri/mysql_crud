@@ -12,6 +12,16 @@
       integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
       crossorigin="anonymous"
     />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+      integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+   
   </head>
   <body>
     <%- include('./partials/nav.ejs') %>
@@ -24,6 +34,8 @@
             <th scope="col">ID</th>
             <th scope="col">Name</th>
             <th scope="col">Email</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -32,6 +44,10 @@
             <td><%= v.id %></td>
             <td><%= v.name %></td>
             <td><%= v.email %></td>
+            <td>
+              <i class="fa fa-duotone fa-pen-to-square"></i>
+            </td>
+            <td><i class="fa fa-duotone fa-trash"></i></td>
           </tr>
           <% }) %>
         </tbody>
